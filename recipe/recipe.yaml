@@ -1,5 +1,5 @@
 context:
-  version: "0.4.16"
+  version: "0.4.19"
   feature_set: full-dynamic
   llvm_major: "20"
 
@@ -9,7 +9,7 @@ recipe:
 
 source:
   - url: https://github.com/marcomq/mq-bridge/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 495b0361bcba51e7089d78f2b1e9fedeae6d43559b9ae3e62af852d6fed0845a
+    sha256: 8c8ca2b19071ba75d7254f5a5af0d2aaf15605acbe53214e82034f67a64bcb3c
     patches:
       - patches/0006-build-the-wheel-with-full-dynamic.patch
 
@@ -60,7 +60,7 @@ outputs:
               - pnpm import
               - pnpm install --frozen-lockfile
               - pnpm run build:ui
-              - cp node_modules/@tauri-apps/api/LICENSE_MIT node_modules/@tauri-apps/api/LICENSE
+              - cp node_modules/@tauri-apps/api/LICENSE.spdx node_modules/@tauri-apps/api/LICENSE
               - pnpm licenses list --json | pnpm-licenses generate-disclaimer --json-input --output-file ../../THIRDPARTY-node-app.txt
               - cargo fetch
               - cargo auditable install --path=crates/cli --root="$PREFIX" --no-track --locked --bins --no-default-features --features "${{ feature_set }}"
@@ -71,7 +71,7 @@ outputs:
               - call pnpm import
               - call pnpm install --frozen-lockfile
               - call pnpm run build:ui
-              - copy node_modules\@tauri-apps\api\LICENSE_MIT node_modules\@tauri-apps\api\LICENSE
+              - copy node_modules\@tauri-apps\api\LICENSE.spdx node_modules\@tauri-apps\api\LICENSE
               - call pnpm licenses list --json | pnpm-licenses generate-disclaimer --json-input --output-file ..\..\THIRDPARTY-node-app.txt
               - cargo fetch
               - cargo auditable install --path=crates/cli --root="%LIBRARY_PREFIX%" --no-track --locked --bins --no-default-features --features "${{ feature_set }}"
