@@ -23,6 +23,8 @@ outputs:
     build:
       number: 0
       script:
+        env:
+          AWS_LC_SYS_NO_JITTER_ENTROPY: "1"
         content:
           - if: unix
             then:
@@ -143,6 +145,7 @@ outputs:
         version_independent: ${{ is_abi3 }}
       script:
         env:
+          AWS_LC_SYS_NO_JITTER_ENTROPY: "1"
           MATURIN_PEP517_ARGS: --locked --no-default-features
         content:
           - if: unix
