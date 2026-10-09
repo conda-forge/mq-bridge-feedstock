@@ -1,5 +1,5 @@
 context:
-  version: "0.4.19"
+  version: "0.4.20"
   feature_set: full-dynamic
   llvm_major: "20"
 
@@ -9,7 +9,7 @@ recipe:
 
 source:
   - url: https://github.com/marcomq/mq-bridge/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 8c8ca2b19071ba75d7254f5a5af0d2aaf15605acbe53214e82034f67a64bcb3c
+    sha256: ebaa9fac5904e94e318ff9c74eaf52ae3cfb767062b62c3e4e6f917ce2c2a94d
     patches:
       - patches/0006-build-the-wheel-with-full-dynamic.patch
 
@@ -23,6 +23,8 @@ outputs:
     build:
       number: 0
       script:
+        env:
+          AWS_LC_SYS_NO_JITTER_ENTROPY: "1"
         content:
           - if: unix
             then:
@@ -143,6 +145,7 @@ outputs:
         version_independent: ${{ is_abi3 }}
       script:
         env:
+          AWS_LC_SYS_NO_JITTER_ENTROPY: "1"
           MATURIN_PEP517_ARGS: --locked --no-default-features
         content:
           - if: unix

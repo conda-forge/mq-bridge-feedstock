@@ -27,6 +27,12 @@ library is invisible to `run_exports`, so a CVE fix in librdkafka would never
 reach a package that compiled its own copy; and anything executed during a build
 has to be a conda package.
 
+The build disables AWS-LC's optional CPU-jitter entropy source. `aws-lc-sys`
+requires those files to be compiled without optimization, but conda's toolchain
+appends its required optimization flags after the crate's `-O0`, causing the
+jitterentropy sources to reject the build. AWS-LC continues to use the operating
+system random source.
+
 ## What the recipe patches
 
 The linkage split and build-system fixes are included in upstream v0.4.15.
