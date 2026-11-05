@@ -95,7 +95,7 @@ outputs:
           then: make
         - if: win
           then: nasm
-        - pkg-config
+        - pkgconf
         - libprotobuf
         - libclang ${{ llvm_major }}.*
         - clang-${{ llvm_major }}
@@ -179,8 +179,8 @@ outputs:
             then: export BINDGEN_EXTRA_CLANG_ARGS="$BINDGEN_EXTRA_CLANG_ARGS ${CONDA_BUILD_SYSROOT:+-isysroot $CONDA_BUILD_SYSROOT}"
           - cargo fetch
           - if: unix
-            then: cd python/mq-bridge-py
-            else: cd python\mq-bridge-py
+            then: cd bindings/python
+            else: cd bindings\python
           - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
           - if: unix
             then: cargo-bundle-licenses --format=yaml --output=../../THIRDPARTY-rust-py.yml
@@ -198,7 +198,7 @@ outputs:
           then: make
         - if: win
           then: nasm
-        - pkg-config
+        - pkgconf
         - libprotobuf
         - libclang ${{ llvm_major }}.*
         - clang-${{ llvm_major }}
@@ -206,13 +206,13 @@ outputs:
           then:
             - python
             - cross-python_${{ target_platform }}
-            - maturin >=1.7,<2
+            - maturin >=1.10,<2
       host:
         - python
         - if: is_abi3
           then: python-abi3
         - pip
-        - maturin >=1.7,<2
+        - maturin >=1.10,<2
         - librdkafka >=2.12.1
         - if: win
           then: zlib
@@ -252,13 +252,13 @@ outputs:
         from Python or loaded as native plugins.
       license: MIT OR Apache-2.0
       license_file:
-        - python/mq-bridge-py/LICENSE.python
-        - python/mq-bridge-py/LICENSE-MIT.python
-        - python/mq-bridge-py/LICENSE-APACHE.python
+        - bindings/python/LICENSE.python
+        - bindings/python/LICENSE-MIT.python
+        - bindings/python/LICENSE-APACHE.python
         - THIRDPARTY-rust-py.yml
       homepage: https://github.com/marcomq/mq-bridge
       repository: https://github.com/marcomq/mq-bridge
-      documentation: https://github.com/marcomq/mq-bridge/tree/main/python/mq-bridge-py
+      documentation: https://github.com/marcomq/mq-bridge/tree/main/bindings/python
 
 about:
   homepage: https://github.com/marcomq/mq-bridge
