@@ -1,5 +1,5 @@
 context:
-  version: "1.4.0"
+  version: "1.5.0"
   feature_set: full-dynamic
   llvm_major: "20"
 
@@ -9,19 +9,19 @@ recipe:
 
 source:
   - url: https://github.com/marcomq/mq-bridge/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 10b23fe17c46e1783ffce7bf84c28f3df2beda01e6170665d55e6bf6b112a1ef
+    sha256: b36626766944b0063c43282d6299e5a47450c11e8511533ed8e98ad3724cb350
     patches:
       - patches/0006-build-the-wheel-with-full-dynamic.patch
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - package:
       name: mq-bridge-app
 
     build:
-      number: 1
+      number: 0
       script:
         env:
           AWS_LC_SYS_NO_JITTER_ENTROPY: "1"
@@ -139,7 +139,7 @@ outputs:
       name: mq-bridge-py
 
     build:
-      number: 1
+      number: 0
       skip: is_abi3 and not is_python_min
       python:
         version_independent: ${{ is_abi3 }}
