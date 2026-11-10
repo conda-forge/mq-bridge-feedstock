@@ -14,14 +14,14 @@ source:
       - patches/0006-build-the-wheel-with-full-dynamic.patch
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - package:
       name: mq-bridge-app
 
     build:
-      number: 0
+      number: 1
       script:
         env:
           AWS_LC_SYS_NO_JITTER_ENTROPY: "1"
@@ -139,7 +139,7 @@ outputs:
       name: mq-bridge-py
 
     build:
-      number: 0
+      number: 1
       skip: is_abi3 and not is_python_min
       python:
         version_independent: ${{ is_abi3 }}
