@@ -35,7 +35,7 @@ Summary: Python bindings for mq-bridge, an async message-bridging library
 
 Development: https://github.com/marcomq/mq-bridge
 
-Documentation: https://github.com/marcomq/mq-bridge/tree/main/python/mq-bridge-py
+Documentation: https://github.com/marcomq/mq-bridge/tree/main/bindings/python
 
 Thin Python bindings for the Rust mq-bridge engine. They expose
 Publisher, Consumer and Route objects that connect message brokers,
